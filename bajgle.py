@@ -23,6 +23,18 @@ def get_secret_character_string() -> str:
     return character_string
 
 
+def validate_input(user_input: str) -> bool:
+    for i in range(constants.NUM_DIGITS):
+        if user_input[i] not in ['1', '2', '3', '4', '5', '6', '7', '8', '9']:
+            return True
+
+    for i in range(constants.NUM_DIGITS, constants.NUM_DIGITS + constants.NUM_LETTERS):
+        if user_input[i] not in ['a', 'b', 'c', 'd', 'e', 'f']:
+            return True
+
+    return False
+
+
 def get_clues(guess: str, secret_string: str) -> str:
     if guess == secret_string:
         return constants.WIN_MESSAGE
@@ -43,6 +55,31 @@ def get_clues(guess: str, secret_string: str) -> str:
 
 if __name__ == '__main__':
     print(constants.MESSAGE)
-    secret_character_string = get_secret_character_string()
-    print(secret_character_string)
-    print(get_clues('765abc', secret_character_string))
+
+    while True:
+        secret_character_string = get_secret_character_string()
+        print('Mam na myśli pewien ciąg znaków.')
+        print(f'Masz {constants.MAX_GUESSES} prób, by go odgadnąć.')
+
+        number_of_guesses = 1
+        while number_of_guesses <= constants.MAX_GUESSES:
+            guess = ''
+            while len(guess) != constants.NUM_DIGITS + constants.NUM_LETTERS or validate_input(guess):
+                print(f'Próba #{number_of_guesses}: ')
+                guess = input('> ')
+
+            clues = get_clues(guess, secret_character_string)
+            print(clues)
+            number_of_guesses += 1
+
+            if guess == secret_character_string:
+                break
+            if number_of_guesses > constants.MAX_GUESSES:
+                print('Wykorzystałeś wszystkie próby.')
+                print(f'Prawidłowa odpowiedź to: {secret_character_string}')
+
+        print('Czy chcesz zagrać jeszcze raz? (tak lub nie)')
+        if not input('> ').lower().startswith('t'):
+            break
+
+    print('Dziękuję za grę!')

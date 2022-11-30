@@ -10,6 +10,7 @@ Fermi Piko Fermi."""
 
 NUM_DIGITS = 3
 NUM_LETTERS = 3
+MAX_GUESSES = 10
 
 WIN_MESSAGE = 'Udało się! Brawo :)'
 FERMI_MESSAGE = 'Fermi'
