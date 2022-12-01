@@ -26,13 +26,13 @@ def get_secret_character_string() -> str:
 def validate_input(user_input: str) -> bool:
     for i in range(constants.NUM_DIGITS):
         if user_input[i] not in ['1', '2', '3', '4', '5', '6', '7', '8', '9']:
-            return True
+            return False
 
     for i in range(constants.NUM_DIGITS, constants.NUM_DIGITS + constants.NUM_LETTERS):
         if user_input[i] not in ['a', 'b', 'c', 'd', 'e', 'f']:
-            return True
+            return False
 
-    return False
+    return True
 
 
 def get_clues(guess: str, secret_string: str) -> str:
@@ -64,7 +64,7 @@ if __name__ == '__main__':
         number_of_guesses = 1
         while number_of_guesses <= constants.MAX_GUESSES:
             guess = ''
-            while len(guess) != constants.NUM_DIGITS + constants.NUM_LETTERS or validate_input(guess):
+            while len(guess) != constants.NUM_DIGITS + constants.NUM_LETTERS or not validate_input(guess):
                 print(f'Próba #{number_of_guesses}: ')
                 guess = input('> ')
 

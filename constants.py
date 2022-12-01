@@ -10,9 +10,14 @@ Fermi Piko Fermi."""
 
 NUM_DIGITS = 3
 NUM_LETTERS = 3
+LENGTH_SECRET_STRING = NUM_DIGITS + NUM_LETTERS
 MAX_GUESSES = 10
 
 WIN_MESSAGE = 'Udało się! Brawo :)'
 FERMI_MESSAGE = 'Fermi'
 PIKO_MESSAGE = 'Piko'
 BAJGLE_MESSAGE = 'Bajgle'
+
+NUMBERS_LIST = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+LETTERS_LIST = ['a', 'b', 'c', 'd', 'e', 'f']
+LENGTH_PERMUTATION = 6
