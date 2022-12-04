@@ -1,2 +1,4 @@
+from game_functions import run_game
+
 if __name__ == '__main__':
-    print('Bajgle')
+    run_game()
