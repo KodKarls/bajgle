@@ -1,7 +1,7 @@
 import itertools
 import unittest
 
-import bajgle
+import game_functions
 import constants
 
 
@@ -46,21 +46,21 @@ class BajgleGameTestCase(unittest.TestCase):
         all_permutation = get_all_permutation(numbers_and_characters)
         all_secret_strings = get_needed_permutation(all_permutation)
 
-        random_secret_character_string = bajgle.get_secret_character_string()
+        random_secret_character_string = game_functions.get_secret_character_string()
 
         self.assertIn(random_secret_character_string, all_secret_strings)
 
     def test_correct_user_input(self):
         user_input = '173abc'
 
-        result = bajgle.validate_input(user_input)
+        result = game_functions.validate_input(user_input)
 
         self.assertEqual(result, True)
 
     def test_incorrect_user_input(self):
         user_input = 'abc278'
 
-        result = bajgle.validate_input(user_input)
+        result = game_functions.validate_input(user_input)
 
         self.assertEqual(result, False)
 
@@ -68,7 +68,7 @@ class BajgleGameTestCase(unittest.TestCase):
         guess = '123abc'
         secret_string = '415def'
 
-        clue = bajgle.get_clues(guess, secret_string)
+        clue = game_functions.get_clues(guess, secret_string)
 
         self.assertEqual(clue, constants.PIKO_MESSAGE)
 
@@ -76,7 +76,7 @@ class BajgleGameTestCase(unittest.TestCase):
         guess = '123abc'
         secret_string = '145def'
 
-        clue = bajgle.get_clues(guess, secret_string)
+        clue = game_functions.get_clues(guess, secret_string)
 
         self.assertEqual(clue, constants.FERMI_MESSAGE)
 
@@ -84,7 +84,7 @@ class BajgleGameTestCase(unittest.TestCase):
         guess = '123abc'
         secret_string = '456def'
 
-        clue = bajgle.get_clues(guess, secret_string)
+        clue = game_functions.get_clues(guess, secret_string)
 
         self.assertEqual(clue, constants.BAJGLE_MESSAGE)
 
@@ -92,7 +92,7 @@ class BajgleGameTestCase(unittest.TestCase):
         guess = '123abc'
         secret_string = '123abc'
 
-        clue = bajgle.get_clues(guess, secret_string)
+        clue = game_functions.get_clues(guess, secret_string)
 
         self.assertEqual(clue, constants.WIN_MESSAGE)
 
